@@ -1,0 +1,62 @@
+
+***---- Chi phí cho việc talking ----***
+- chi phí = số phút * phí talking của operator cho mỗi phút. 
+	+ Nếu độ tuổi của khách hàng < 18 or > 65 tuổi, thì nhà điều hành sẽ áp dụng mức chiết khấu với tỷ lệ chiết khấu tương úng được đưa ra
+
+Ví dụ:
+- talkkingCharge = 2 USD
+- minute = 10 
+- age = 16 < 18 -> discountRate = 10%
+
+Tính toán:
+Chi phí chưa giảm: 10x2 = 20 USD
+Chiết khẩu: 20 x10% = 2 USD
+Chi phí cuối cùng: 20 - 2 = 18 USD
+
+***---- Chi phí cho việc message ----***
+- chi phí = số lượng tin nhắn * chi phí của mỗi tin nhắn của nhà mạng (operator) 
+	+ Nếu 2 khách hàng cùng sử dụng một nhà mạng, thì nhà mạng sẽ áp dụng mức chiết khấu với mức chiết khấu tương ứng mà nhà mạng có.
+
+***---- Chi phí cho việc internet ----***
+- chi phí = lượng MB * chi phí mạng cho mỗi MB.
+
+Trước khi thực hiện hành động, ta nên kiểm tra hạn mức của hóa đơn (limitingAmount), nếu khách hàng đã vượt quá hạn mức sau khi thực hiện hành động thì không được thực hiện hành động nào nữa.
+
+- ID của customer, operator và bill phải bắt đầu từ 0
+
+
+ ** Đầu vào
+1 <name> <age> <ID> <limitingAmount> --> Khách hàng
+2 <talkingCharge> <messageCost> <networkCharge> <discountRate> --> Operator
+3 <1stCustomerID> <2ndCustomerID> <time> --> 1 khách hàng ns chuyện với khách hàng khác
+4 <1stCustomerID> <2ndCustomerID> <quantity> --> 1 khách hàng nhắn tin với khách hàng khác
+5 <CustomerID> <amount> --> Khách hàng kết nối internet
+6 <CustomerID> <amount>  --> Khách hàng thanh toán hóa đơn của mình
+7 <CustomerID> <OperatorID> --> Khách hàng thay đổi nhà điều hành của mình
+8 <CustomerID> <amount> --> Khách hàng thay đổi hạn mức của mk
+
+**Đầu ra
+1 - Đối với mỗi nhà mạng, bạn nên in ra thời gian họ phục vụ talking, số lượng message, lượng sử dụng internet
+Operator <ID of the Operator> : <talking time> <number of messages> <MBs of usage>
+
+2- Đối với mỗi khách hàng, số tiền họ chi để thanh toán hóa đơn và số nợ hiện tại khi kết thúc mô phỏng trong hóa đơn của họ
+Customer <ID of the Customer> : <total money spent> <current debt>
+
+3 - ID của khách hàng nói nhiều nhất và thời gian tính theo phút (nếu 2 khách hàng bằng nhau thì in ra khách hàng có ID nhỏ hơn)
+<name of the Customer> : <talking time>
+
+4 - ID của khách hàng gửi tin nhắn nhiều nhất và số lượng tin nhắn (nếu 2 khách hàng bằng nhau thì in ra khách hàng có ID nhỏ hơn)
+<name of the Customer> : <number Of Messages>
+
+5 - ID của Khách hàng kết nối internet nhiều nhất và số lượng tính theo MB. (nếu 2 Khách hàng bằng nhau thì in ra Khách hàng có ID nhỏ hơn)
+<name of the Customer> : <connection amount>
+
+
+
+Ghi chú:
+
+>> extraction operator
+	+ Bỏ qua khoảng trắng (space, tab, newline) trước khi đọc.
+	+ Dừng việc đọc lại khi gặp khoảng trắng và kí tự không hợp lệ.
+		Ví dụ: Nếu dùng  >> để đọc "hello world" thì nó chỉ nhận "hello". Và "world" được lưu trữ 
+		trong streambuf. Ta cần phải dùng >> 1 lần nữa để đọc được "world"
