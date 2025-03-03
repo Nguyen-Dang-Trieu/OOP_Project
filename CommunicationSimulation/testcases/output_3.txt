@@ -1,0 +1,16 @@
+C: 4
+O: 6
+N: 30
+Operator 0: 0 0 0
+Operator 1: 0 0 0
+Operator 2: 93 11 36.37
+Operator 3: 7 0 2.03
+Operator 4: 28 10 13.53
+Operator 5: 0 0 0
+Customer 0: 0 4.1064
+Customer 1: 2.0531 0
+Customer 2: 0 6.695
+Customer 3: 0 23.2923
+b: 64
+d: 10
+c: 20.25
